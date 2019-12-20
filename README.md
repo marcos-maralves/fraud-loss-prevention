@@ -27,6 +27,7 @@ Our solution will leverage the following Cisco technologies
 ### 3rd party software
 
 * Payment APIs
+* Node RED
 * [Amazon Rekognition](https://aws.amazon.com/rekognition/?n=sn&p=sm)
 
 

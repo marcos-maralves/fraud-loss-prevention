@@ -159,7 +159,7 @@ You can get the information about your Public IP / FQDN to access your system at
 
 *#mkdir /home/ubuntu/images*
 
-*mkdir /home/ubuntu/compare_images*
+*#mkdir /home/ubuntu/compare_images*
 
 If you don't want to use these directories you will need to change it at in the Node-Red flows.
 
@@ -176,7 +176,7 @@ Now you need to install the modules requests and boto3 (AWS module) using pip:
 
 - Install Requests python module: *#pip install requests*
 
-- Install boto3 python module: *pip install boto3*
+- Install boto3 python module: *#pip install boto3*
 
 <!--awscli not in use today -->
 
@@ -200,7 +200,7 @@ We will give here the instructions to install it on [Ubuntu/RaspberryPi](https:/
 
 2. Install Node-Red:
 
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+*bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)*
 
 Answer with Yes the two questions about the installation:
 Are you really sure you want to do this ? [y/N] ? Y
@@ -208,11 +208,11 @@ Would you like to install the Pi-specific nodes ? [y/N] ? Y
 
 3. Enable it to be started at the boot as a service
 
-sudo systemctl enable nodered.service
+*sudo systemctl enable nodered.service*
 
 4. Start the Node-Red service
 
-node-red-start
+*node-red-start*
 
 5. Access Node-Red using your public IP / FQDN at port 1880 in your browser
 
@@ -224,7 +224,7 @@ It's very recommended that you setup a user/password for your Node-Red, speciall
 
 For that you need to edit your setting.js file. Details available in the [Securing Node-Red Docs](https://nodered.org/docs/user-guide/runtime/securing-node-red)
 
-Restart Node-Red after the settings: #node-red-restarted
+Restart Node-Red after the settings: *#node-red-restarted*
 
 7. Access Node-Red GUI and install the "nodes" required
 
@@ -234,15 +234,15 @@ Install the following nodes:
 
 Right Upper Menu -> Manage palette -> User Settings -> Palette -> Install -> Search and install:
 
-*node-red-contrib-meraki-dashboard-api
+*node-red-contrib-meraki-dashboard-api*
 
-node-red-contrib-spark
+*node-red-contrib-spark*
 
-node-red-contrib-mqtt-broker
+*node-red-contrib-mqtt-broker*
 
-node-red-contrib-python-function
+*node-red-contrib-python-function*
 
-node-red-contrib-credentials*
+*node-red-contrib-credentials*
 
 After installation you should see the new nodes available at the left side of the panel.
 
@@ -332,17 +332,6 @@ Right Upper Menu -> Import -> Select File
   - Replace with your AWS region - example us-east-1
 
 
-
-
-  S3 buckets configured:
-  asics3
-  fraudasic
-  transportasic
-
-
-
-
-
 **Webex Teams:**
 
 You will need a Bot to be used as the frontend, interacting with the cashier or store manager for the different functions implemented - checkout, fraud and checkout analysis.
@@ -351,11 +340,26 @@ You will need a Bot to be used as the frontend, interacting with the cashier or 
 - Webex Teams RoomId (to be used as user interface)
 
 To create your bot please check this documentation.
-[Webex Teams Bots Documentation]T(https://developer.webex.com/docs/bots)
+[Webex Teams Bots Documentation](https://developer.webex.com/docs/bots)
 
 After your import the Flows in Node-Red, you will be able to add the BotId and RoomId in to the flows and test the access there. The Webex Teams node for Node-Red will have to be imported as well as part of the Node-Red setup.
 
-**AWS - To Continue from Here**
+**AWS Rekognition**
+
+This is the AWS service that will be used to analyze the images, detect the faces in the images and compare the faces. This service is available at the AWS console. This service has a free tier that can be used for your proof of concept.
+
+We used the [boto3](https://aws.amazon.com/sdk-for-python/) module for python that gives programmatic access to the service but you can make first tests using the AWS GUI: [Facial Analysis](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-detection) and [Face Comparison](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-comparison). The installation of boto3 is documented at the Ubuntu VM installation.
+
+Rekognition uses the AWS S3 storage services to store the images that will be analyzed and compared.
+In the project we are using 3 S3 storage buckets that you need to create.
+
+Using the AWS console, search for S3 service. The first page that you will see if the list of buckets. You need the create the following buckets. *If you change the names you need to change it in the code as well.*
+
+- *asicaws*
+- *fraudasic*
+- *transportasic*
+
+Do it using *+ Creat Bucket* button and at the *Bucket Name* use the names above
 
 As described above we will need two services from Amazon: Rekognition and S3.
 
@@ -369,13 +373,28 @@ asicaws
 fraudasic
 transportasic
 
-
+S3 buckets configured:
+asics3
+fraudasic
+transportasic
 
 
 
 ## Documentation
 
-Pointer to reference documentation for this project.
+Reference documentation
+
+[Webex Teams Bots Documentation](https://developer.webex.com/docs/bots)
+
+[Meraki MV Cameras](https://developer.cisco.com/meraki/mv-sense/#!overview/camera-apis-breakdown)
+
+[Meraki API documentation](http://postman.meraki.com/)
+
+[Amazon Rekognition](https://aws.amazon.com/rekognition/?n=sn&p=sm)
+
+[Node-Red Getting Started](https://nodered.org/docs/getting-started/)
+
+[MQTT](http://mqtt.org/)
 
 
 ## License

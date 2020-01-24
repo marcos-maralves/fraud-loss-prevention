@@ -359,26 +359,24 @@ Using the AWS console, search for S3 service. The first page that you will see i
 - *fraudasic*
 - *transportasic*
 
-Do it using *+ Creat Bucket* button and at the *Bucket Name* use the names above
+Do it using *+ Creat Bucket* button and at the *Bucket Name* use the names above.
+Under *Set Permissions* make it publicly available for Node-Red nodes can access it. If you prefer create access lists allowing only your Node-Red / Ubuntu VM IP address to access it.
 
-As described above we will need two services from Amazon: Rekognition and S3.
+You will also need Access Keys to access the service. These keys are created under the IAM (Identity and Access Management)service in AWS:
 
-- Api Key with read & write Access to:
-  - S3 Storage
-  - Rekognition - Face Recognition and Comparison
+- Search for IAM in your AWS console
 
-Buckets, Region, etc
+- Under the IAM Dashboard, find Security Status, Root Access Keys and Manage Security Credentials
 
-asicaws
-fraudasic
-transportasic
+- If you get a question about using IAM, click on Continue to Security Credentials - less secure but easier setup.
 
-S3 buckets configured:
-asics3
-fraudasic
-transportasic
+- Click in Access Keys and Generate New Access Key
 
+- Copy your *Access Key* and *Secret Key* to a safe place. It will be required during Node-Red Configuration.
 
+Also you need to inform the AWS boto3 module about your *AWS region*
+
+In my setup my region is "us-east-1". You can check that in your AWS console.
 
 ## Documentation
 

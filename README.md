@@ -2,6 +2,10 @@
 
 Use Meraki Vision (MV) Cameras APIs and embedded analytics capabilities, together with Machine Learning image analysis solutions to provide insights about suspicious people and transactions, alerting the store team and helping on loss prevention, using via Webex Teams Collaboration platform as the frontend. All the project was done using NodeRed, which requires lower coding skills, take advantage of hundreds or existent nodes and make easier to modify and evolve the project.
 
+[Solution Presentation Video](https://cisco.box.com/s/0vlgza5l24wi1243biu379ta2aroc66s)
+
+*Only available for Cisco employees*
+
 ## Business/Technical Challenges
 
 Retail companies have every year large losses caused my theft and different fraud activities. Some of people involved in these losses are doing it multiple times because it's not easy to catch it and prove their involvement. A solution that can identify people when entering at the store, at the checkout and easily allow a suspect person to be flagged, could help in later visits of the same person to alert the different store teams, preventing additional losses.
@@ -47,7 +51,7 @@ All the communications between the services were using:
 
 ## Team Members
 
-* Marcos Alves - <maralves@cisco.com> - TSS GVE Brazil
+* Marcos Alves - <maralves@cisco.com> - TSS EN GVE Brazil
 * Lucas Pavanelli - <lpavanel@cisco.com> - SE Brazil
 * Daniel Vicentini - <dvicenti@cisco.com> - SA Partner Organization Brazil
 * Flavio Correa - <flcorrea@cisco.com> - TSA EN Architecture Brazil
@@ -149,9 +153,25 @@ We described above some possibilities and in our case we decided to use AWS VM s
 You will have to run a command like this in your terminal:
 *ssh -i you_key.pem ubuntu@your_instance_id.compute-1.amazonaws.com*
 
-you can get the information about your Public IP / FQDN to access your system at the main VM description dashboard.
+You can get the information about your Public IP / FQDN to access your system at the main VM description dashboard.
 
-6. Open the following ports for inbound connection (from Internet to this VM)
+6. Create the directories that will store the snapshots
+
+/home/ubuntu/images
+/home/ubuntu/compare_images
+
+If you don't want to use these directories you need to change it at the "Secret Sauce" node in the Meraki Vision Flow of Node-Red.
+
+7. Install the required
+
+python2.7
+requests
+boto3
+<!--awscli not in use today -->
+
+
+
+8. Open the following ports for inbound connection (from Internet to this VM)
   - Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
   - In the inbound tab add the following Services:
     - SSH should be created automatically
@@ -181,15 +201,24 @@ Would you like to install the Pi-specific nodes ? [y/N] ? Y
 sudo systemctl enable nodered.service
 
 4. Start the Node-Red service
+
 node-red-start
 
 5. Access Node-Red using your public IP / FQDN at port 1880 in your browser
+
 http://your_instance_id:1880
 
+6. Setup Node-Red http access security
+
+To add security you need to follow the steps
+
+- Open your setting file using an editor:
+nano /usr/lib/node_modules/node-red/settings.js
 
 
 
 
+Nodes: Meraki, Teams, MQTT e Python
 
 **Webex Teams:**
 
@@ -210,6 +239,12 @@ As described above we will need two services from Amazon: Rekognition and S3.
 - Api Key with read & write Access to:
   - S3 Storage
   - Rekognition - Face Recognition and Comparison
+
+Buckets, Region, etc
+
+asicaws
+fraudasic
+transportasic
 
 
 

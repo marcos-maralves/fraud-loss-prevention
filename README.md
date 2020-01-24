@@ -28,7 +28,7 @@ All the interface with the end user is based on Webex Teams. A bot was created w
 
 Our solution will leverage the following Cisco technologies
 
-* [Meraki Cameras](https://developer.cisco.com/meraki/mv-sense/#!overview/camera-apis-breakdown)
+* [Meraki MV Cameras](https://developer.cisco.com/meraki/mv-sense/#!overview/camera-apis-breakdown)
 * [Webex Teams](https://developer.webex.com/docs/api/getting-started)
 
 ### 3rd party software
@@ -41,8 +41,8 @@ Also these additional 3rd party services were used:
 ### Protocols
 
 All the communications between the services were using:
-* [REST APIs]
-* [MQTT]
+* REST APIs
+* [MQTT](http://mqtt.org/)
 
 
 ## Team Members
@@ -75,25 +75,35 @@ The solution components are:
 
 Provide a brief overview of how to use the solution  -->
 
-To use the solution you must have the following equipment, services and tokens:
+To use the solution you must have the following equipment, services and API tokens:
 
 **Cisco Meraki**
 
-- Api Key to access Meraki Dashboard and MV Cameras
+- API Key to access Meraki Dashboard and MV Cameras
 - Meraki MV12 or other model that supports snapshot and analytics (MV Sense)
 
 **Webex Teams**
 
-- Webex Teams Bot Id
-- Webex Teams RoomId (to be used as user interface)
+- Webex Teams Bot and BotId
+- Webex Teams RoomId to be used as user interface
 
 **AWS**
 
-- Api Key with read & write Access to:
-  - S3 Storage
-  - Rekognition - Face Recognition and Comparison
+- API Key with read & write Access to:
+  - S3 Storage with two buckets - Storage of the snapshots used by Rekognition service
+  - Rekognition - Face recognition and comparison services
 
-**Virtual Machine Linux-Based (to host Node-Red /the app)**
+**Node-Red**
+
+- Node-Red service with access to the machine CLI
+
+**Virtual Machine Linux-Based (Optional to host Node-Red / the app)**
+
+- There are multiple alternatives to run Node-Red, including the installation in a Raspberry PI
+- We decided to host it in a Cloud provider VM free tier, to be able to get connection from the Internet.
+- If you host the Node-Red in a LAN you will need to use a service like Ngrok to get inbound connections
+- Node-Red as a Service is not recommended since it usually don't let you access the CLI of the machine that is required to install some python modules and do the snapshot image handling - download from the camera and upload to the S3 bucket
+
 
 ## Installation
 
@@ -107,18 +117,14 @@ If you have a second camera, install it at the entrance of the store. This secon
 At the Meraki Dashboard, copy the Meraki API in a safe location. You will have to configure it at Node-Red later on. Check this [link](https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API) to know how to enable the Dashboard API and get the key.
 
 You will also need to setup at Node-Red the Meraki Network ID and Meraki MV Camera SN.
-Meraki Network ID is only available at the API. The Meraki MV Camera SN can be obtained using the GUI or API.
+Meraki Network ID is only available at the Meraki API.
+The Meraki MV Camera SN can be obtained using the GUI or API.
+
 [Meraki API documentation](http://postman.meraki.com/)
 
-- NetworkId
-curl --location --request GET 'https://api.meraki.com/api/v0/networks/' \
---header 'Accept: */*' \
---data-raw ''
+- NetworkId API: GET 'https://api.meraki.com/api/v0/networks/'
 
-- CameraSN
-curl --location --request GET 'https://api.meraki.com/api/v0/networks//devices' \
---header 'Accept: */*' \
---data-raw ''
+- CameraSN API: GET 'https://api.meraki.com/api/v0/networks//devices'
 
 
 **Webex Teams:**

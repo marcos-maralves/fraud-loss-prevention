@@ -190,6 +190,39 @@ Now you need to install the modules requests and boto3 (AWS module) using pip:
     - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
     - Add: Custom TCP - 1889 - 0.0.0.0/0 - mqtt
 
+    **AWS Rekognition**
+
+    This is the AWS service that will be used to analyze the images, detect the faces in the images and compare the faces. This service is available at the AWS console. This service has a free tier that can be used for your proof of concept.
+
+    We used the [boto3](https://aws.amazon.com/sdk-for-python/) module for python that gives programmatic access to the service but you can make first tests using the AWS GUI: [Facial Analysis](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-detection) and [Face Comparison](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-comparison). The installation of boto3 is documented at the Ubuntu VM installation.
+
+    Rekognition uses the AWS S3 storage services to store the images that will be analyzed and compared.
+    In the project we are using 3 S3 storage buckets that you need to create.
+
+    Using the AWS console, search for S3 service. The first page that you will see if the list of buckets. You need the create the following buckets. *If you change the names you need to change it in the code as well.*
+
+    - *asicaws*
+    - *fraudasic*
+    - *transportasic*
+
+    Do it using *+ Creat Bucket* button and at the *Bucket Name* use the names above.
+    Under *Set Permissions* make it publicly available for Node-Red nodes can access it. If you prefer create access lists allowing only your Node-Red / Ubuntu VM IP address to access it.
+
+    You will also need Access Keys to access the service. These keys are created under the IAM (Identity and Access Management)service in AWS:
+
+    - Search for IAM in your AWS console
+
+    - Under the IAM Dashboard, find Security Status, Root Access Keys and Manage Security Credentials
+
+    - If you get a question about using IAM, click on Continue to Security Credentials - less secure but easier setup.
+
+    - Click in Access Keys and Generate New Access Key
+
+    - Copy your *Access Key* and *Secret Key* to a safe place. It will be required during Node-Red Configuration.
+
+    Also you need to inform the AWS boto3 module about your *AWS region*
+
+    In my setup my region is "us-east-1". You can check that in your AWS console.
 
 **Node-Red:**
 
@@ -344,39 +377,6 @@ To create your bot please check this documentation.
 
 After your import the Flows in Node-Red, you will be able to add the BotId and RoomId in to the flows and test the access there. The Webex Teams node for Node-Red will have to be imported as well as part of the Node-Red setup.
 
-**AWS Rekognition**
-
-This is the AWS service that will be used to analyze the images, detect the faces in the images and compare the faces. This service is available at the AWS console. This service has a free tier that can be used for your proof of concept.
-
-We used the [boto3](https://aws.amazon.com/sdk-for-python/) module for python that gives programmatic access to the service but you can make first tests using the AWS GUI: [Facial Analysis](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-detection) and [Face Comparison](https://console.aws.amazon.com/rekognition/home?region=us-east-1#/face-comparison). The installation of boto3 is documented at the Ubuntu VM installation.
-
-Rekognition uses the AWS S3 storage services to store the images that will be analyzed and compared.
-In the project we are using 3 S3 storage buckets that you need to create.
-
-Using the AWS console, search for S3 service. The first page that you will see if the list of buckets. You need the create the following buckets. *If you change the names you need to change it in the code as well.*
-
-- *asicaws*
-- *fraudasic*
-- *transportasic*
-
-Do it using *+ Creat Bucket* button and at the *Bucket Name* use the names above.
-Under *Set Permissions* make it publicly available for Node-Red nodes can access it. If you prefer create access lists allowing only your Node-Red / Ubuntu VM IP address to access it.
-
-You will also need Access Keys to access the service. These keys are created under the IAM (Identity and Access Management)service in AWS:
-
-- Search for IAM in your AWS console
-
-- Under the IAM Dashboard, find Security Status, Root Access Keys and Manage Security Credentials
-
-- If you get a question about using IAM, click on Continue to Security Credentials - less secure but easier setup.
-
-- Click in Access Keys and Generate New Access Key
-
-- Copy your *Access Key* and *Secret Key* to a safe place. It will be required during Node-Red Configuration.
-
-Also you need to inform the AWS boto3 module about your *AWS region*
-
-In my setup my region is "us-east-1". You can check that in your AWS console.
 
 ## Documentation
 

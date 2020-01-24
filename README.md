@@ -70,29 +70,29 @@ Provide a brief overview of how to use the solution  -->
 
 To use the solution you must have the following equipment, services and tokens:
 
-* Cisco Meraki:
+**Cisco Meraki**
 
 - Api Key to access Meraki Dashboard and MV Cameras
 - Meraki MV12 or other model that supports snapshot and analytics (MV Sense)
 
-* Webex Teams
+**Webex Teams**
 
 - Webex Teams Bot Id
 - Webex Teams RoomId (to be used as user interface)
 
-* AWS
+**AWS**
 
 - Api Key with read & write Access to:
   - S3 Storage
   - Rekognition - Face Recognition and Comparison
 
-* Virtual Machine Linux-Based (to host Node-Red /  the app)
+**Virtual Machine Linux-Based (to host Node-Red /the app)**
 
 ## Installation
 
 <!-- How to install or setup the project for use. -->
 
-* Cisco Meraki:
+**Cisco Meraki:**
 
 You need to have a least one camera to be installed at the checkout. Make sure you fix the camera in a position that the customer face can be recorded during the checkout process.
 If you have a second camera, install it at the entrance of the store. This second camera will allow the automatic image recognition process and let the store teams knows about a suspect before the user is at the cashier for checkout.
@@ -114,7 +114,7 @@ curl --location --request GET 'https://api.meraki.com/api/v0/networks//devices' 
 --data-raw ''
 
 
-* Webex Teams
+**Webex Teams:**
 
 You will need a Bot to be used as the frontend, interacting with the cashier or store manager for the different functions implemented.
 
@@ -123,13 +123,15 @@ You will need a Bot to be used as the frontend, interacting with the cashier or 
 
 [Webex Teams Bots Documentation]T(https://developer.webex.com/docs/bots)
 
-* AWS - To Continue from Here
+**AWS - To Continue from Here**
 
 - Api Key with read & write Access to:
   - S3 Storage
   - Rekognition - Face Recognition and Comparison
 
-* Virtual Machine Linux-Based (to host Node-Red /  the app)
+**Node-Red:**
+
+**Virtual Machine Linux-Based (to host Node-Red /  the app)**
 
 ## Documentation
 

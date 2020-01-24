@@ -180,16 +180,15 @@ Now you need to install the modules requests and boto3 (AWS module) using pip:
 
 <!--awscli not in use today -->
 
-
-
 8. Open the following ports for inbound connection (from Internet to this VM)
-  - Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
+  - At AWS Console, click at the EC2 instance and at the description panel below, look for Security Groups and click in the group created automatically.
+
   - In the inbound tab add the following Services:
     - SSH should be created automatically
     - Add: HTTP - TCP - 80 - 0.0.0.0/0 - web
     - Add: HTTPS - TCP - 443 - 0.0.0.0/0 - secure web
     - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
-    - Add: Custom TCP - 1882-1889 - 0.0.0.0/0 - mqtt
+    - Add: Custom TCP - 1889 - 0.0.0.0/0 - mqtt
 
 
 **Node-Red:**
@@ -227,13 +226,42 @@ For that you need to edit your setting.js file. Details available in the [Securi
 
 Restart Node-Red after the settings: #node-red-restarted
 
-7.
+7. Access Node-Red GUI and install the "nodes" required
+
+Node-Red has default nodes but also hundred nodes that can be installed to reduce the ammount of coding required.
+
+Install the following nodes:
+
+Right Upper Menu -> Manage palette -> User Settings -> Palette -> Install -> Search and install:
+
+*node-red-contrib-meraki-dashboard-api
+
+node-red-contrib-spark
+
+node-red-contrib-mqtt-broker
+
+node-red-contrib-python-function*
+
+After installation you should see the new nodes available at the left side of the panel.
+
+8. Import the Node-Red Flows using the flow.json file available in github
+
+
+9. Configure your setup Ids and tokens
+
+- Webex Teams Flow tab
+
+  Edit the node below the comments node that says "INPUT 1"
+
+  Edit/Create a new Webex Teams Profile by creating a name like "Infobot" and your Webex Teams Bearer Token. If you don't have it go to the Webex Team install session.
+
+  Edit the node below the comments node that says "INPUT 2"
+
+  In the second line of the python code add your Room Id. If you don't have it go to the Webex Team install session.
 
 
 
 
-
-Nodes: Meraki, Teams, MQTT e Python
 
 **Webex Teams:**
 

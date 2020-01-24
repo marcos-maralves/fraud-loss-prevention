@@ -141,13 +141,13 @@ We described above some possibilities and in our case we decided to use AWS VM s
 4. At this point you will need to create a key to access the machine SSH.
 5. Access the SSH when the instance is running to install the Node-Red.
 6. Open the following ports for inbound connection (from Internet to this VM)
-- Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
-- In the inbound tab add the following Services:
-  - SSH should be created automatically
-  - Add: HTTP - TCP - 80 - 0.0.0.0/0 - web
-  - Add: HTTPS - TCP - 443 - 0.0.0.0/0 - secure web
-  - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
-  - Add: Custom TCP - 1882-1889 - 0.0.0.0/0 - mqtt
+  - Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
+  - In the inbound tab add the following Services:
+    - SSH should be created automatically
+    - Add: HTTP - TCP - 80 - 0.0.0.0/0 - web
+    - Add: HTTPS - TCP - 443 - 0.0.0.0/0 - secure web
+    - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
+    - Add: Custom TCP - 1882-1889 - 0.0.0.0/0 - mqtt
 
 **Node-Red:**
 

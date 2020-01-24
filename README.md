@@ -1,7 +1,6 @@
-# fraud-loss-prevention aka Checkout Compliance
+# Checkout Compliance (aka fraud-loss-prevention)
 
 Use Meraki Vision (MV) Cameras APIs and embedded analytics capabilities, together with Machine Learning image analysis solutions to provide insights about suspicious people and transactions, alerting the store team and helping on loss prevention, using via Webex Teams Collaboration platform as the frontend. All the project was done using NodeRed, which requires lower coding skills, take advantage of hundreds or existent nodes and make easier to modify and evolve the project.
-
 
 ## Business/Technical Challenges
 
@@ -34,16 +33,24 @@ Our solution will leverage the following Cisco technologies
 
 ### 3rd party software
 
+Also these additional 3rd party services were used:
+
 * [Node-Red](https://nodered.org/)
 * [Amazon Rekognition](https://aws.amazon.com/rekognition/?n=sn&p=sm)
+
+### Protocols
+
+All the communications between the services were using:
+* [REST APIs]
+* [MQTT]
 
 
 ## Team Members
 
-* Marcos Alves <maralves@cisco.com> - TSS GVE Brazil
-* Lucas Pavanelli <lpavanel@cisco.com> - SE Brazil
-* Daniel Vicentini <dvicenti@cisco.com> - SA Partner Organization Brazil
-* Flavio Correa <flcorrea@cisco.com> - TSA EN Architecture Brazil
+* Marcos Alves - <maralves@cisco.com> - TSS GVE Brazil
+* Lucas Pavanelli - <lpavanel@cisco.com> - SE Brazil
+* Daniel Vicentini - <dvicenti@cisco.com> - SA Partner Organization Brazil
+* Flavio Correa - <flcorrea@cisco.com> - TSA EN Architecture Brazil
 
 
 ## Solution Components

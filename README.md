@@ -240,24 +240,104 @@ node-red-contrib-spark
 
 node-red-contrib-mqtt-broker
 
-node-red-contrib-python-function*
+node-red-contrib-python-function
+
+node-red-contrib-credentials*
 
 After installation you should see the new nodes available at the left side of the panel.
 
+
 8. Import the Node-Red Flows using the flow.json file available in github
+
+Right Upper Menu -> Import -> Select File
 
 
 9. Configure your setup Ids and tokens
 
 - Webex Teams Flow tab
 
-  Edit the node below the comments node that says "INPUT 1"
+  Edit the node below the comments node that says "INPUT 1" - *List rooms where bot belongs to* node
 
   Edit/Create a new Webex Teams Profile by creating a name like "Infobot" and your Webex Teams Bearer Token. If you don't have it go to the Webex Team install session.
 
-  Edit the node below the comments node that says "INPUT 2"
+  Edit the node below the comments node that says "INPUT 2" - *text + image* node
 
   In the second line of the python code add your Room Id. If you don't have it go to the Webex Team install session.
+
+  Edit the node below the comments node that says "INPUT 3" - *GET Webhook* node
+
+  At the Host field, replace with the IP addres or name of where your Node-Red is running.
+
+  Edit the node below the comments node that says "INPUT 4" - *filtering* node
+
+  Replace with your bot name, for instance infobot@sparkbot.io was used during development
+
+- Meraki Vision Flow tab
+
+  Edit the node below the comments node that says "INPUT 1" - *Secret Sauce* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your Meraki API Key
+  - Replace with your Network Id
+  - Replace with your Camera SN
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+
+  Edit the node below the comments node that says "INPUT 2" - *S3 e Rekognition* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+  - Replace with your AWS region - example us-east-1
+
+  Edit the node below the comments node that says "INPUT 3" - *FraudFlag* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+
+  Edit the node below the comments node that says "INPUT 4" - *lab_entrance* node
+
+  - Replace with your Camera SN
+
+  Edit the node below the comments node that says "INPUT 5" - *Analytics* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+  - Replace with your AWS region - example us-east-1
+  - Replace with your Meraki API Key
+  - Replace with your Network Id
+  - Replace with your Camera SN
+
+  Edit the node below the comments node that says "INPUT 6" - *S3 e Rekognition* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+  - Replace with your AWS region - example us-east-1
+
+  Edit the node below the comments node that says "INPUT 7" - *FaceRecok* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+  - Replace with your AWS region - example us-east-1
+
+  Edit the node below the comments node that says "INPUT 8" - *Delete* node
+
+  During the code there are places where you need to enter your environment information:
+  - Replace with your AWS S3 Access Key
+  - Replace with your AWS S3 Secret Key
+  - Replace with your AWS region - example us-east-1
+
+
+
+
+  S3 buckets configured:
+  asics3
+  fraudasic
+  transportasic
 
 
 

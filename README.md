@@ -130,6 +130,7 @@ The easier way to start with the Meraki APIs is using Postman.
 
 - *CameraSN* API Call: GET 'https://api.meraki.com/api/v0/networks//devices'
 
+
 **Virtual Machine Linux-Based (to host Node-Red /  the app)**
 
 Since the APP is built in Node-Red, you will need to first decide where to run Node-Red.
@@ -145,6 +146,11 @@ We described above some possibilities and in our case we decided to use AWS VM s
 
 5. Access the SSH when the instance is running to install the Node-Red.
 
+You will have to run a command like this in your terminal:
+*ssh -i you_key.pem ubuntu@your_instance_id.compute-1.amazonaws.com*
+
+you can get the information about your Public IP / FQDN to access your system at the main VM description dashboard.
+
 6. Open the following ports for inbound connection (from Internet to this VM)
   - Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
   - In the inbound tab add the following Services:
@@ -154,7 +160,36 @@ We described above some possibilities and in our case we decided to use AWS VM s
     - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
     - Add: Custom TCP - 1882-1889 - 0.0.0.0/0 - mqtt
 
+
 **Node-Red:**
+
+Now that you have a place to host Node-Red, follow the instructions to install it.
+We will give here the instructions to install it on [Ubuntu/RaspberryPi](https://nodered.org/docs/getting-started/raspberrypi) but there is documentation available to install it in other operational systems. [Node-Red Getting Started](https://nodered.org/docs/getting-started/)
+
+1. Log into the Ubuntu VM via SSH.
+
+2. Install Node-Red:
+
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+
+Answer with Yes the two questions about the installation:
+Are you really sure you want to do this ? [y/N] ? Y
+Would you like to install the Pi-specific nodes ? [y/N] ? Y
+
+3. Enable it to be started at the boot as a service
+
+sudo systemctl enable nodered.service
+
+4. Start the Node-Red service
+node-red-start
+
+5. Access Node-Red using your public IP / FQDN at port 1880 in your browser
+http://your_instance_id:1880
+
+
+
+
+
 
 **Webex Teams:**
 

@@ -157,16 +157,27 @@ You can get the information about your Public IP / FQDN to access your system at
 
 6. Create the directories that will store the snapshots
 
-/home/ubuntu/images
-/home/ubuntu/compare_images
+*#mkdir /home/ubuntu/images*
 
-If you don't want to use these directories you need to change it at the "Secret Sauce" node in the Meraki Vision Flow of Node-Red.
+*mkdir /home/ubuntu/compare_images*
 
-7. Install the required
+If you don't want to use these directories you will need to change it at in the Node-Red flows.
 
-python2.7
-requests
-boto3
+7. Install python and the required python modules:
+
+This Ubuntu comes with Python installed. We will use Python2. Verify if it's working typing #python at the terminal. You should get Python 2.7.17 or LastTermination
+
+*ubuntu@ip_add:~$ python
+Python 2.7.17 (default, Nov  7 2019, 10:07:09)*
+
+Now you need to install the modules requests and boto3 (AWS module) using pip:
+
+- First install pip: *#sudo apt install python-pip*
+
+- Install Requests python module: *#pip install requests*
+
+- Install boto3 python module: *pip install boto3*
+
 <!--awscli not in use today -->
 
 
@@ -210,10 +221,14 @@ http://your_instance_id:1880
 
 6. Setup Node-Red http access security
 
-To add security you need to follow the steps
+It's very recommended that you setup a user/password for your Node-Red, specially because it's running with services exposed to the Internet.
 
-- Open your setting file using an editor:
-nano /usr/lib/node_modules/node-red/settings.js
+For that you need to edit your setting.js file. Details available in the [Securing Node-Red Docs](https://nodered.org/docs/user-guide/runtime/securing-node-red)
+
+Restart Node-Red after the settings: #node-red-restarted
+
+7.
+
 
 
 

@@ -136,10 +136,15 @@ Since the APP is built in Node-Red, you will need to first decide where to run N
 We described above some possibilities and in our case we decided to use AWS VM service (EC2) to host a Ubuntu Linux. We used the AWS ECS free tier in our tests and deployment.
 
 1. If you don't have a AWS account, you can create it on aws.amazon.com
+
 2. At the AWS console look for the EC2 service.
+
 3. Follow the steps: Launch Instance -> Ubuntu (free tier eligible) -> t2.micro (free tier eligible) -> Review and Launch -> Launch.
+
 4. At this point you will need to create a key to access the machine SSH.
+
 5. Access the SSH when the instance is running to install the Node-Red.
+
 6. Open the following ports for inbound connection (from Internet to this VM)
   - Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
   - In the inbound tab add the following Services:

@@ -114,37 +114,66 @@ To use the solution you must have the following equipment, services and API toke
 You need to have a least one camera to be installed at the checkout. Make sure you fix the camera in a position that the customer face can be recorded during the checkout process.
 If you have a second camera, install it at the entrance of the store. This second camera will allow the automatic image recognition process and let the store teams knows about a suspect before the user is at the cashier for checkout.
 
-At the Meraki Dashboard, copy the Meraki API in a safe location. You will have to configure it at Node-Red later on. Check this [link](https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API) to know how to enable the Dashboard API and get the key.
+Test your camera using the Meraki Dashboard, to make sure it's working an capture the image in a way that the face of the person doing checkout or entering the store can be easily recorded. The better the image captured you will increase the ML algorithm changes to correctly detect and compare a face.
 
-You will also need to setup at Node-Red the Meraki Network ID and Meraki MV Camera SN.
-Meraki Network ID is only available at the Meraki API.
-The Meraki MV Camera SN can be obtained using the GUI or API.
+At the Meraki Dashboard, copy the *Meraki Dashboard API* in a safe location. You will have to configure it at Node-Red later on. Check this [link](https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API) to know how to enable the Dashboard API step by step and get the API key.
+
+You will also need to setup at Node-Red the Meraki *Network ID* and Meraki MV *Camera Serial Number*.
+Meraki *Network ID* is only available via Meraki API.
+The Meraki MV *Camera SN* can be obtained using the GUI or API.
+
+The easier way to start with the Meraki APIs is using Postman.
 
 [Meraki API documentation](http://postman.meraki.com/)
 
-- NetworkId API: GET 'https://api.meraki.com/api/v0/networks/'
+- *NetworkId* API Call: GET 'https://api.meraki.com/api/v0/networks/'
 
-- CameraSN API: GET 'https://api.meraki.com/api/v0/networks//devices'
+- *CameraSN* API Call: GET 'https://api.meraki.com/api/v0/networks//devices'
 
+**Virtual Machine Linux-Based (to host Node-Red /  the app)**
+
+Since the APP is built in Node-Red, you will need to first decide where to run Node-Red.
+We described above some possibilities and in our case we decided to use AWS VM service (EC2) to host a Ubuntu Linux. We used the AWS ECS free tier in our tests and deployment.
+
+1. If you don't have a AWS account, you can create it on aws.amazon.com
+2. At the AWS console look for the EC2 service.
+3. Follow the steps: Launch Instance -> Ubuntu (free tier eligible) -> t2.micro (free tier eligible) -> Review and Launch -> Launch.
+4. At this point you will need to create a key to access the machine SSH.
+5. Access the SSH when the instance is running to install the Node-Red.
+6. Open the following ports for inbound connection (from Internet to this VM)
+- Click at the instance, at the description panel below look for Security Groups and click in the group created automatically.
+- In the inbound tab add the following Services:
+  - SSH should be created automatically
+  - Add: HTTP - TCP - 80 - 0.0.0.0/0 - web
+  - Add: HTTPS - TCP - 443 - 0.0.0.0/0 - secure web
+  - Add: Custom TCP - 1880 - 0.0.0.0/0 - node-red
+  - Add: Custom TCP - 1882-1889 - 0.0.0.0/0 - mqtt
+
+**Node-Red:**
 
 **Webex Teams:**
 
-You will need a Bot to be used as the frontend, interacting with the cashier or store manager for the different functions implemented.
+You will need a Bot to be used as the frontend, interacting with the cashier or store manager for the different functions implemented - checkout, fraud and checkout analysis.
 
-- Webex Teams Bot Id
+- Webex Teams BotId
 - Webex Teams RoomId (to be used as user interface)
 
+To create your bot please check this documentation.
 [Webex Teams Bots Documentation]T(https://developer.webex.com/docs/bots)
 
+After your import the Flows in Node-Red, you will be able to add the BotId and RoomId in to the flows and test the access there. The Webex Teams node for Node-Red will have to be imported as well as part of the Node-Red setup.
+
 **AWS - To Continue from Here**
+
+As described above we will need two services from Amazon: Rekognition and S3.
 
 - Api Key with read & write Access to:
   - S3 Storage
   - Rekognition - Face Recognition and Comparison
 
-**Node-Red:**
 
-**Virtual Machine Linux-Based (to host Node-Red /  the app)**
+
+
 
 ## Documentation
 

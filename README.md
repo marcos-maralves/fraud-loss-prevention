@@ -377,6 +377,17 @@ To create your bot please check this documentation.
 
 After your import the Flows in Node-Red, you will be able to add the BotId and RoomId in to the flows and test the access there. The Webex Teams node for Node-Red will have to be imported as well as part of the Node-Red setup.
 
+At the Webex Room that you will use in the project add you Bot. Other users can be added as well to help manage the store.
+
+There are the commands that can be used when calling the Bot:
+
+- *checkout <id>*
+
+Checkout command is used to manually register a new checkout and it will trigger that the camera will capture a snapshot and check if the person in the image captured is present in the suspects list. If person is found an alert is generated.
+
+- *fraud <id>*
+
+Fraud command is used to flag that a transaction or a person is suspect and it will trigger the image capture in the transaction timeframe to be added to the suspect list (bucket). A message will confirm that the operation was accepted.
 
 ## Documentation
 

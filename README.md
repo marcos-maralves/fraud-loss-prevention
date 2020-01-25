@@ -391,6 +391,18 @@ Fraud command is used to flag that a transaction or a person is suspect and it w
 
 The transaction_id is an arbitrary number in the MVP that is used to index the image taken in that particular timeframe. The production solution will use this transaction_id based in the credit company ids generated in every transaction.
 
+## Using the solution
+
+After all the setup these are the instructions to use the solution.
+
+Considering that you have a camera at the checkout, in every checkout, make an input of the checkout in the system using the *checkout transction_id* command, evoking your Webex Bot.
+
+When you identify a suspect person or transaction fraud, add the transaction id to the suspects list using the *fraud transaction_id* command in Webex Teams, evoking your Webex Bot.
+
+Next time a new checkout is register, the image of the checkout will be compared with the suspects image and a alert will be raised in case you have a suspect at your checkout.
+
+Considering that you have also a camera that can capture the entrance of the store and with that the customer will stay for more than 3min inside the store, the Webex Teams Bot will inform you proactivelly (without any manual intervention) in case an suspect is detected, even before checkout time.
+
 ## Documentation
 
 Reference documentation

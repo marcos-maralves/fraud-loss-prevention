@@ -391,7 +391,7 @@ Fraud command is used to flag that a transaction or a person is suspect and it w
 
 The transaction_id is an arbitrary number in the MVP that is used to index the image taken in that particular timeframe. The production solution will use this transaction_id based in the credit company ids generated in every transaction.
 
-## Using the solution
+**Using the solution**
 
 After all the setup these are the instructions to use the solution.
 

@@ -52,7 +52,6 @@ All the communications between the services were using:
 ## Team Members
 
 * Marcos Alves - <maralves@cisco.com> - TSS EN GVE Brazil
-* Lucas Pavanelli - <lpavanel@cisco.com> - SE Brazil
 * Daniel Vicentini - <dvicenti@cisco.com> - SA Partner Organization Brazil
 * Flavio Correa - <flcorrea@cisco.com> - TSA EN Architecture Brazil
 
